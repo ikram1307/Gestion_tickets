@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des événements</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .container {
+            margin-top: 50px; /* Espace au-dessus */
+        }
+        .form-container {
+            float: left;
+            width: 45%;
+            margin-right: 5%;
+        }
+        .table-container {
+            float: left;
+            width: 50%;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        <h2>Ajouter un événement</h2>
+        <form action="#" th:action="@{/ajouterEvenement}" method="post">
+            <!-- Champs du formulaire -->
+            <div class="form-group">
+                <label for="nom">Nom:</label>
+                <input type="text" class="form-control" id="nom" name="nom">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" class="form-control" id="date" name="date">
+            </div>
+            <div class="form-group">
+                <label for="lieu">Lieu:</label>
+                <input type="text" class="form-control" id="lieu" name="lieu">
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" id="description" name="description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="prix">Prix:</label>
+                <input type="text" class="form-control" id="prix" name="prix">
+            </div>
+            <div class="form-group">
+                <label for="organisateur">Organisateur:</label>
+                <input type="text" class="form-control" id="organisateur" name="organisateur">
+            </div>
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+        </form>
+    </div>
+
+    <div class="table-container">
+        <h2>Liste des événements</h2>
+        <table class="table">
+            <!-- Header de la table -->
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Date</th>
+                <th>Lieu</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Organisateur</th>
+            </tr>
+            </thead>
+            <!-- Corps de la table (rempli par Thymeleaf) -->
+            <tbody>
+            <tr th:each="evenement : ${evenements}">
+                <td th:text="${evenement.id}"></td>
+                <td th:text="${evenement.name}"></td>
+                <td th:text="${#dates.format(evenement.date, 'dd/MM/yyyy HH:mm')}"></td>
+                <td th:text="${evenement.lieu}"></td>
+                <td th:text="${evenement.description}"></td>
+                <td th:text="${evenement.prix}"></td>
+                <td th:text="${evenement.organisateur.nom}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

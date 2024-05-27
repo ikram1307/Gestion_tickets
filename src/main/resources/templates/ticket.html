@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets Table</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="content1">
+
+<div class="container mt-5">
+    <h2>Tickets Table</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Evenement Name</th>
+            <th>Type Ticket</th>
+            <th>Prix</th>
+            <th>Date Achat</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Boucle sur les billets -->
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.id}">ID</td>
+            <td th:text="${ticket.name}">Evenement Name</td>
+            <td th:text="${ticket.typeTicket}">Type Ticket</td>
+            <td th:text="${ticket.prix}">Prix</td>
+            <td th:text="${ticket.dateAchat}">Date Achat</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>
